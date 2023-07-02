@@ -1,3 +1,4 @@
+
 import java.util.UnknownFormatConversionException;
 import java.io.BufferedReader; // permet de faire des lectures en memoire tempon (Buffer) afin d'ameliorer les performances eiter les appels systeme
 import java.io.FileReader; // Permet de lire les fichiers 
@@ -5,8 +6,22 @@ import java.io.IOException; // Gerer les exceptions liees uax fichiers
 
 public class DictionnaryCracker extends PasswordHacherCracher {
 
+    public   BufferedReader bufferedReader ;
+
     public DictionnaryCracker() {
         System.out.println("\nUne instance de la classe DictionnaryCracker cree avec succees\n");
+
+        try{
+
+            bufferedReader = new BufferedReader(new FileReader("../dictionnary.txt")); // Chargement du fichier en memoire tampon
+
+
+        }catch (IOException e){
+            System.err.println("Erreur lors de la l'ouverture du fichier : " + e.getMessage());
+
+
+        }
+
     }
 
 
@@ -28,11 +43,10 @@ public class DictionnaryCracker extends PasswordHacherCracher {
         password = scanner.next();
 
         // On charge le dictionnaire
-        String dictionnaryPath = "dictionnary.txt"; //Chemin d'acces au dictionnaire de donnees
-
+        
         try{
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionnaryPath)); // Chargement du fichier en memoire tampon
+           // BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionnaryPath)); // Chargement du fichier en memoire tampon
 
             String line;
 
@@ -69,6 +83,31 @@ public class DictionnaryCracker extends PasswordHacherCracher {
         }
 
         return null;
+    }
+
+
+
+
+    public String getMotDePasse(){
+
+        try {
+            // Lire la ligne suivante du fichier
+            return bufferedReader.readLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // En cas d'erreur ou de fin de fichier
+    }
+
+
+    public void fermerDictionary() {
+        try {
+            // Fermer le lecteur de fichier
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }

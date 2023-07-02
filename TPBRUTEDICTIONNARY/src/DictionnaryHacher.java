@@ -46,7 +46,7 @@ class DictionnaryHacher extends PasswordHacherCracher{
         };
 
 
-        String dictionnaryPath = "dictionnary.txt"; //Chemin d'acces au dictionnaire de donnees
+        String dictionnaryPath = "../dictionnary.txt"; //Chemin d'acces au dictionnaire de donnees
 
         try{
 

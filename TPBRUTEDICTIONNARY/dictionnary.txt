@@ -3,6 +3,7 @@
 azerty
 1234561
 qwerty
+mon_password
 marseille
 ousseynou
 000000
